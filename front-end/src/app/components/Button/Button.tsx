@@ -9,8 +9,8 @@ const Button = ({text, tipo ,type , pagina, onClick} : ButtonProps) => {
         if (onClick){
             onClick(e);
         }
-        else if (pagina){
-            router.push(pagina);
+        if (pagina && type !== 'submit') {
+          router.push(pagina);
         }
     }
 
