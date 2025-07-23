@@ -1,0 +1,9 @@
+#tipoProduto{
+    width: 280px;
+    height: 45px;
+    background-color: var(--cinza-fundo);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    font-family: var(--fonte-padrao);
+    font-size: 18px;
+}
