@@ -1,0 +1,50 @@
+.counterbox{
+    height: 45px;
+    background-color: var(--branco);
+    border: 1px solid var(--cinza-bordas);
+    border-radius: 10px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    width: 130px;
+    justify-content: space-between;
+}
+
+#count{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    overflow: hidden;
+}
+
+.button{
+    margin: 0 8;
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.icon-container svg{
+    display: flex;
+    align-items: center;
+}
+
+svg.minus{
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #6b6b6b;
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+svg.plus{
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--preto);
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

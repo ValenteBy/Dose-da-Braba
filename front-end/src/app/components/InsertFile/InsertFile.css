@@ -1,7 +1,0 @@
-.insert-container #insert{
-    width: 300px;
-    height: 30px;
-    background-color: var(--cinza-fundo);
-    border: 3px solid var(--cinza-bordas);
-    border-radius: 10px;
-}

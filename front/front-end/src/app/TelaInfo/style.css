@@ -1,0 +1,57 @@
+.info-container{
+    width: 920px;
+    min-height: 840px;
+    background-color: var(--branco);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputbox input{
+    width: 780px;
+    height: 35px;
+    background-color: var(--cinza-fundo);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    text-align: left;
+    outline: none;
+}
+
+.inputbox{
+    margin: 20 0;
+}
+
+.inputbox p{
+    font-family: var(--fonte-padrao);
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 0;
+}
+
+p#titulo{
+    font-family: var(--fonte-padrao);
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0 0;
+}
+
+.info-container .buttons{
+    margin: 100 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.margin-left{
+    margin-left: 40px;
+}
+
+.margin-right{
+    margin-right: 40px;
+}

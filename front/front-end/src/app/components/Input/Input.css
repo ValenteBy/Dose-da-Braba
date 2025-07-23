@@ -1,0 +1,85 @@
+.inputbox input#senha{
+    width: 400px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--cinza-fundo);
+    border: 3px solid var(--cinza-bordas);
+    outline: none;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    padding: 0px 10px;
+    text-align: left;
+}
+
+.inputbox input#input{
+    width: 420px;
+    height: 35px;
+    background-color: var(--cinza-fundo);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    text-align: left;
+    outline: none;
+}
+
+.inputbox2 input#busca{
+    width: 85%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--branco);
+    border: none;
+    outline: none;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 0px 10px;
+    text-align: left;
+}
+
+.inputbox2{
+    width: 450px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--branco);
+    border: 3px solid var(--cinza-bordas);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-icon{
+    padding-top: 2px;
+    padding-right: 15px;
+    overflow: hidden;
+    user-select: none;
+}
+
+.pricebox{
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--cinza-fundo);
+    border: 3px solid var(--cinza-bordas);
+    display: flex;
+    align-items: center;
+    text-align: end;
+    justify-content: space-between;
+}
+
+.pricebox #preco{
+    width: 72%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--cinza-fundo);
+    border: none;
+    outline: none;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 0px 10px;
+    text-align: left;
+}
+
+.pricebox span{
+    font-family: var(--fonte-padrao);
+    font-size: 18px;
+}
