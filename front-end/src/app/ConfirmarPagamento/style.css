@@ -1,0 +1,102 @@
+.main-content{
+    width: 920px;
+    min-height: 840px;
+    background-color: var(--branco);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-cliente{
+    display: flex;
+    width: 850px;
+    justify-content: space-between;
+}
+
+.nome-endereco-complemento div{
+    margin-top: 5px;
+}
+
+.cpf-telefone div{
+    margin-top: 5px;
+    margin-right: 180px;
+}
+
+.info-cliente p{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.info-cliente p#bold{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+p {
+    font-family: var(--fonte-padrao);
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0 0;
+}
+
+
+.opcoes-pagamento{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.opcoes-pagamento span{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+}
+
+.option{
+    width: 850px;
+    height: 50px;
+    background-color: var(--cinza-fundo);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.buttons{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.conta{
+    margin-top: 25px;
+}
+
+.conta-segmento{
+    width: 850px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-family: var(--fonte-padrao);
+}
+
+label{
+    font-family: var(--fonte-padrao);
+    font-size: 18px;
+    padding-right: 250px;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+input{
+    width: 18px;
+    height: 18px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 25px;
+    cursor: pointer;
+}

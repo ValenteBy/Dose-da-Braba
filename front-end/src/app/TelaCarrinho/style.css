@@ -1,0 +1,49 @@
+main{
+    height: 100%;
+}
+
+.carrinho-container{
+    width: 1160px;
+    min-height: 840px;
+    background-color: var(--branco);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.obs-container p{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 100px;
+    margin-top: 0px;
+}
+
+.obs-container{
+    margin: 35px 40px;
+    display: flex;
+}
+
+.obs-container textarea{
+    max-width: 800px;
+    min-height: 200px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+}
+
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.margin-left{
+    margin-left: 50px;
+}
+
+.margin-right{
+    margin-right: 50px;
+}

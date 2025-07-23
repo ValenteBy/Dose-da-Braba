@@ -1,0 +1,15 @@
+p {
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    margin: auto;
+}
+
+.textArea{
+    min-width: 500px;
+    min-height: 250px;
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+    background-color: var(--cinza-fundo);
+    outline: none;
+    resize: horizontal;
+}
