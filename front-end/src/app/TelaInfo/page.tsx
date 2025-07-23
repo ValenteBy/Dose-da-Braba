@@ -81,7 +81,7 @@ export default function TelaInfo() {
         <>
         <Header isClient/>
         <form className='info-container' onSubmit={handleSubmit}>
-            <p>Suas informações:</p>
+            <p id='titulo'>Suas informações:</p>
             <div>
                 <div className='inputbox'>
                 <p>Nome:</p>

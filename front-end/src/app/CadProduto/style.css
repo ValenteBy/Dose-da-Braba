@@ -1,3 +1,8 @@
+.cad-produto p{
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
 .titulo h1{
     text-align: center;
     font-family: var(--fonte-padrao);
@@ -41,7 +46,7 @@
     cursor: pointer;
 }
 
-.btn-container #voltar{
+.btn-container2 #voltar{
     width: 185px;
     height: 60px;
     border: 3px solid var(--preto);
@@ -54,6 +59,11 @@
 
 .btn-container{
     margin: 100 0;
+}
+
+.btn-container2{
+    margin-bottom: 100px;
+    margin-top: 60px;
 }
 
 .-end{

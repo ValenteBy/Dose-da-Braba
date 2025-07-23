@@ -32,12 +32,18 @@ main{
     margin-bottom: 50px;
 }
 
-.buttons{
+.carrinho-container .buttons{
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.carrinho-container p{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    margin: auto;
 }
 
 .margin-left{

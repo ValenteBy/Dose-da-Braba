@@ -1,4 +1,4 @@
-p {
+.text-area p{
     font-family: var(--fonte-padrao);
     font-size: 20px;
     margin: auto;

@@ -8,7 +8,7 @@ import Select from '../components/Select/Select'
 import InsertFile from '../components/InsertFile/InsertFile'
 import './style.css'
 
-export default function EditarProduto(){
+export default function CadProduto(){
     const router = useRouter()
 
     const [nomeProduto, setNomeProduto] = useState('')
@@ -22,6 +22,7 @@ export default function EditarProduto(){
     return(
         <>
             <Header isAdmin/>
+            <div className='cad-produto'>
             <div className='titulo'>
                 <h1>Cadastrar Produto</h1>
             </div>
@@ -35,7 +36,7 @@ export default function EditarProduto(){
                         <input type='checkbox' id='check-disponivel'></input>
                     </label>
 
-                    <div className='btn-container'>
+                    <div className='btn-container2'>
                         <button className='-branco' type='reset' value='Reset' id='voltar' onClick={handleProdutosAdmin}>Voltar</button>
                     </div>
                 </div>
@@ -51,6 +52,7 @@ export default function EditarProduto(){
                 </div>
 
             </form>
+            </div>
         </>
     )
 }
