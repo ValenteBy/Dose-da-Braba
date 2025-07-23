@@ -105,8 +105,8 @@ export default function TelaInfo() {
             </div>
             </div>
             <div className='buttons'>
-                <Button text='Confirmar' type='submit' tipo='btn-confirmarInfo' pagina='/ConfirmarPagamento' disabled={!isFormValid}/>
-                <Button text='Voltar' type='reset' tipo='btn-voltarInfo' pagina='/TelaCarrinho'></Button>
+                <Button text='Confirmar' type='submit' tipo='btn-confirmarInfo -preto' pagina='/ConfirmarPagamento' disabled={!isFormValid}/>
+                <Button text='Voltar' type='reset' tipo='btn-voltarInfo -branco' pagina='/TelaCarrinho'></Button>
             </div>
         </form>
         </>

@@ -32,6 +32,7 @@
     color: var(--preto);
     font-family: var(--fonte-fuggles);
     font-size: 80px;
+    font-weight: 400;
     line-height: 55px;
     cursor: pointer;
 }

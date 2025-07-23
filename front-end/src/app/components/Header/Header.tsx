@@ -40,7 +40,7 @@ const Header = ({isAdmin, isClient} : HeaderProps) => {
                     <div className="dropdown">
                         <button className="dropbtn">Menu</button>
                         <div className="dropdown-content">
-                            <a href="http://localhost:3000/TelaInicial">Café</a>
+                            <a href="http://localhost:3000/Menu">Café</a>
                             <a>Chá</a>
                             <a>Outros</a>
                         </div>

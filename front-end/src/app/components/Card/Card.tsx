@@ -48,9 +48,9 @@ export default function Card()  {
             return (
             <div className='produto-card' key={key}>
                 <Image className='image-border' src={item.imagem} alt='product-photo' width={170} height={170}></Image>
-                <span className='nome-container text-style'>{item.nome}</span>
-                <span className='preco-container text-style'>R$ {item.preco}</span>
-                <Button text='Adicionar ao carrinho' tipo='btn-adicionarProduto' type='button' onClick={handleTelaProduto}/>
+                <span className='nome-container text-style-card'>{item.nome}</span>
+                <span className='preco-container text-style-card'>R$ {item.preco}</span>
+                <Button text='Adicionar ao carrinho' tipo='btn-adicionarProduto -preto' type='button' onClick={handleTelaProduto}/>
             </div>)
             })}
         </div>

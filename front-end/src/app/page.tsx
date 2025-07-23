@@ -3,8 +3,6 @@ import { useState } from 'react'
 import Header from './components/Header/Header'
 import Image from 'next/image'
 import Footer from './components/Footer/Footer'
-import Input from './components/Input/Input'
-import Card from './components/Card/Card'
 import './pageStyle.css'
 
 export default function TelaInicial(){
@@ -17,7 +15,7 @@ export default function TelaInicial(){
           <div className='container'>
           <div className='justify-between'>
             <div className='column'>
-              <div>
+              <div className='titulo-subtitulo'>
                 <h1 className='texto-principal'>O CAFÉ NOTA 10</h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, quae placeat. Corrupti, omnis id a consequatur eius saepe quia dignissimos.</p>
               </div>
