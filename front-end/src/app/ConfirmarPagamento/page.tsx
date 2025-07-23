@@ -2,11 +2,13 @@
 import Header from '../components/Header/Header'
 import Button from '../components/Button/Button'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import './style.css'
 
 export default function ConfirmarPagamento() {
 
     const router = useRouter()
+    const [metPagamento,setMetPagamento] = useState('')
 
     const cliente = {
         nome: 'Fulano de Sousa',
@@ -16,10 +18,18 @@ export default function ConfirmarPagamento() {
         complemento: 'Lorem Ipsum Dolor Sit Amet'
     }
 
+    const isFormValid = metPagamento !== ''
+
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      if (!isFormValid) return
+      router.push('')//colocar popup de pedido confirmado
+    }
+
     return(
         <>
         <Header isClient/>
-        <form className='main-content'>
+        <form className='main-content' onSubmit={handleSubmit}>
             <div className='info-cliente'>
                 <div className='nome-endereco-complemento'>
                     <div>
@@ -48,19 +58,19 @@ export default function ConfirmarPagamento() {
             </div>
 
             <div className='opcoes-pagamento'>
-                <span>Pagamento:</span>
-                <div className='option'>
-                    <input className='radio-container' type='radio' id='pix' name='pagamento' value='Pix'></input>
-                    <label htmlFor='pix'>Pix</label>
-                </div>
-                <div className='option'>
-                    <input className='radio-container' type='radio' id='credito' name='pagamento' value='Credito'></input>
-                    <label htmlFor='credito'>Cartão de Crédito</label>
-                </div>
-                <div className='option'>
-                    <input className='radio-container' type='radio' id='dinheiro' name='pagamento' value='Dinheiro'></input>
-                    <label htmlFor='dinheiro'>Dinheiro</label>
-                </div>
+                <div className='opcoes-pagamento'>
+                  <span>Pagamento:</span>
+                  {['Pix', 'Credito', 'Dinheiro'].map((method) => (
+                    <div className='option' key={method}>
+                      <input
+                        className='radio-container' type='radio' id={method.toLowerCase()} name='pagamento' value={method} checked={metPagamento === method} onChange={() => setMetPagamento(method)}
+                       />
+              <label htmlFor={method.toLowerCase()}>
+                {method === 'Credito' ? 'Cartão de Crédito' : method}
+              </label>
+            </div>
+          ))}
+        </div>
             </div>
 
             <div className='conta'>
@@ -81,8 +91,8 @@ export default function ConfirmarPagamento() {
             </div>
 
             <div className='buttons'>
-                <Button text='Confirmar Pedido' type='submit' tipo='btn-confirmarPedido -preto' pagina=''></Button>
-                <Button text='Voltar' tipo='btn-voltarPedido -branco' pagina='/TelaInfo'></Button>
+                <Button text='Confirmar Pedido' type='submit' tipo='btn-confirmarPedido -preto' ></Button>
+                <Button text='Voltar' type='reset' tipo='btn-voltarPedido -branco' pagina='/TelaInfo'></Button>
             </div>
         </form>
         </>

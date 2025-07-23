@@ -55,7 +55,7 @@ export default function TelaCarrinho(){
                 </div>
                 <div className='buttons'>
                   <div className='margin-left'>
-                    <Button tipo='btn-voltar -branco' text='Voltar'></Button>
+                    <Button type='reset' tipo='btn-voltar -branco' text='Voltar' pagina='/'></Button>
                   </div>
                   <div className='margin-right'>
                     <Button tipo='btn-confirmar -preto' text='Confirmar Pedido' pagina='/TelaInfo'></Button>
