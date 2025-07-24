@@ -138,11 +138,6 @@ export default function TelaProduto() {
                         <h3>Total: R$ {calculateTotalPrice().toFixed(2)}</h3>
                     </div>
 
-                    <div className='bebida-observacoes'>
-                        <label className='observacoes-label'>Observações:</label>
-                        <TextArea text='' placeholder='Alguma observação especial?' value={observacoes} onChange={(e) => setObservacoes(e.target.value)}/>
-                    </div>
-
                     <div className='bebida-actions'>
                         <button type='button' className='btn-voltar -branco' onClick={handleVoltar}>Voltar</button>
                         <button type='button' className='btn-adicionar -preto' onClick={handleAdicionarAoCarrinho}>Adicionar ao Carrinho</button>

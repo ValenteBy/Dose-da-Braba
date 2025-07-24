@@ -123,9 +123,10 @@
     gap: 20px;
 }
 
-.btn-voltar,
-.btn-adicionar {
-    padding: 15px 40px;
+
+.bebida-actions .btn-voltar,
+.bebida-actions .btn-adicionar {
+    padding: 0px 40px;
     border-radius: 30px;
     font-family: var(--fonte-padrao);
     font-size: 30px;

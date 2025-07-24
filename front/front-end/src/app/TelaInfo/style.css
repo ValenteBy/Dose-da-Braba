@@ -41,7 +41,7 @@ p#titulo{
     margin: 0 0;
 }
 
-.info-container .buttons{
+form.info-container .buttons{
     margin: 100 0 0 0;
     display: flex;
     flex-direction: column;

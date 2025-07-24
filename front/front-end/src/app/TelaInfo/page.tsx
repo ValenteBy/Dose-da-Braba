@@ -167,13 +167,13 @@ export default function TelaInfo() {
                 <Button 
                     text={loading ? 'Criando Pedido...' : 'Confirmar'} 
                     type='submit' 
-                    tipo='btn-confirmarInfo' 
+                    tipo='btn-confirmarInfo -preto' 
                     disabled={!isFormValid || loading}
                 />
                 <Button 
                     text='Voltar' 
                     type='button' 
-                    tipo='btn-voltarInfo' 
+                    tipo='btn-voltarInfo -branco' 
                     onClick={handleVoltar}
                 />
             </div>

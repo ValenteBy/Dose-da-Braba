@@ -50,17 +50,8 @@ export default function TelaInicial(){
 
             <div className='options-container'>
               <div className='option-card px-py'>
-                <h1 className='mg-texto-card'>Cafés</h1>
-                <p className='texto-cinza mg-texto-card'>Veja o nosso catálogo de cafés</p>
-                <div className='imagem-e-botao'>
-                  <Image className='imagem-pd' src='./images/fi-ss-coffee.svg' alt='' width={120} height={120}/>
-                  <button className='botao-box-card -preto' onClick={handleMenu}>Menu</button>
-                </div>
-              </div>
-
-              <div className='option-card px-py'>
-                <h1 className='mg-texto-card'>Chás</h1>
-                <p className='texto-cinza mg-texto-card'>Veja o nosso catálogo de Chás</p>
+                <h1 className='mg-texto-card'>Menu</h1>
+                <p className='texto-cinza mg-texto-card'>Veja o nosso catálogo de bebidas.</p>
                 <div className='imagem-e-botao'>
                   <Image className='imagem-pd pd-left' src='./images/fi-sr-mug-alt.svg' alt='' width={120} height={120}/>
                   <button className='botao-box-card -preto' onClick={handleMenu}>Menu</button>
@@ -84,7 +75,6 @@ export default function TelaInicial(){
             <div className='options-container -wd-team'>
               <div className='person-card'>
                 <div className='img-container'>
-                  <Image className='mg-left' src='/images/Erley.png' alt='' width={390} height={250}></Image>
                 </div>
                 <div className='px-py'>
                   <h2 className='mg-texto-card'>Erley Monteiro da Rocha</h2>
@@ -101,7 +91,7 @@ export default function TelaInicial(){
                 <div className='img-container'></div>
                 <div className='px-py'>
                   <h2 className='mg-texto-card'>Samuel Valente de Oliveira</h2>
-                  <p className='texto-cinza mg-texto-card'>Matricula: seilaporra</p>
+                  <p className='texto-cinza mg-texto-card'>Matricula: 0000000</p>
                 </div>
                 <div className='py-1rem'>
                   <a className='mg-github' href='https://github.com/ValenteBy' target='_blank'>
@@ -114,7 +104,7 @@ export default function TelaInicial(){
                 <div className='img-container'></div>
                 <div className='px-py'>
                   <h2 className='mg-texto-card'>Gustavo Lopes Lameu</h2>
-                  <p className='texto-cinza mg-texto-card'>Matricula: seilaporra</p>
+                  <p className='texto-cinza mg-texto-card'>Matricula: 1631412</p>
                 </div>
                 <div className='py-1rem'>
                   <a className='mg-github' href='https://github.com/GusLameu' target='_blank'>

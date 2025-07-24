@@ -33,6 +33,7 @@
     font-family: var(--fonte-fuggles);
     font-size: 80px;
     line-height: 55px;
+    font-weight: 400;
     cursor: pointer;
 }
 

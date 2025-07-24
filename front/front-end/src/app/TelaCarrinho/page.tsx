@@ -104,15 +104,7 @@ export default function TelaCarrinho(){
                     </>
                 )}
 
-                <div className='obs-container'>
-                  <p>Observações:</p>
-                  <TextArea 
-                    text='' 
-                    placeholder='Alguma observação especial para seu pedido?' 
-                    value={observacoes} 
-                    onChange={(e) => setObservacoes(e.target.value)}
-                  />
-                </div>
+                
                 
                 <div className='buttons'>
                   <div className='margin-left'>
