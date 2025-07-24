@@ -3,12 +3,18 @@ import { useState } from 'react'
 import Header from './components/Header/Header'
 import Image from 'next/image'
 import Footer from './components/Footer/Footer'
+import { useRouter } from 'next/navigation'
 import Input from './components/Input/Input'
 import Card from './components/Card/Card'
 import './pageStyle.css'
 
 export default function TelaInicial(){
     const [b1, setB1] = useState('')
+    const router = useRouter();
+
+    const handleMenu = () => {
+      router.push('/Menu')
+    }
 
     return(
         <>
@@ -19,11 +25,10 @@ export default function TelaInicial(){
             <div className='column'>
               <div>
                 <h1 className='texto-principal'>O CAFÉ NOTA 10</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, quae placeat. Corrupti, omnis id a consequatur eius saepe quia dignissimos.</p>
+                <p>O melhor café é Cafortimais.</p>
               </div>
               <div className='buttons'>
-                <button className='botao-box text-style -preto -bordas -tamanho'>GitHub</button>
-                <button className='botao-box text-style -branco -bordas -tamanho'>Qualquer</button>
+                <a className='botao-box text-style -preto -bordas -tamanho' href='https://github.com/ValenteBy/Dose-da-Braba' target='_blank'>GitHub</a>
               </div>
             </div>
             <span>
@@ -38,38 +43,30 @@ export default function TelaInicial(){
           <div className='container py-5rem'>
             <div className='text-container'>
               <div className='mg-auto wd-fit'>
-                <h1 className='mg-auto wd-fit'>a</h1>
-                <p className='texto-cinza mg-auto subtitulo py-1rem'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, quae placeat. Corrupti, omnis id a consequatur eius saepe quia dignissimos.</p>
+                <h1 className='mg-auto wd-fit'>Explore</h1>
+                <p className='texto-cinza mg-auto subtitulo py-1rem'>Dê uma olhada em nosso menu e peça já a sua bebida.</p>
               </div>
             </div>
 
             <div className='options-container'>
               <div className='option-card px-py'>
                 <h1 className='mg-texto-card'>Cafés</h1>
-                <p className='texto-cinza mg-texto-card'>Lorem ipsum dolor sit amet dolor consectetur.</p>
+                <p className='texto-cinza mg-texto-card'>Veja o nosso catálogo de cafés</p>
                 <div className='imagem-e-botao'>
                   <Image className='imagem-pd' src='./images/fi-ss-coffee.svg' alt='' width={120} height={120}/>
-                  <button className='botao-box-card -preto'>Menu</button>
+                  <button className='botao-box-card -preto' onClick={handleMenu}>Menu</button>
                 </div>
               </div>
 
               <div className='option-card px-py'>
                 <h1 className='mg-texto-card'>Chás</h1>
-                <p className='texto-cinza mg-texto-card'>Lorem ipsum dolor sit amet dolor consectetur.</p>
+                <p className='texto-cinza mg-texto-card'>Veja o nosso catálogo de Chás</p>
                 <div className='imagem-e-botao'>
                   <Image className='imagem-pd pd-left' src='./images/fi-sr-mug-alt.svg' alt='' width={120} height={120}/>
-                  <button className='botao-box-card -preto'>Menu</button>
+                  <button className='botao-box-card -preto' onClick={handleMenu}>Menu</button>
                 </div>
               </div>
 
-              <div className='option-card px-py'>
-                <h1 className='mg-texto-card'>Outros</h1>
-                <p className='texto-cinza mg-texto-card'>Lorem ipsum dolor sit amet dolor consectetur.</p>
-                <div className='imagem-e-botao'>
-                  <Image className='imagem-pd' src='./images/fi-ss-cupcake.svg' alt='' width={120} height={120}/>
-                  <button className='botao-box-card -preto'>Menu</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
