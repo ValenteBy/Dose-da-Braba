@@ -2,12 +2,14 @@
 import Header from '../components/Header/Header'
 import Input from '../components/Input/Input'
 import Button from '../components/Button/Button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { ApiService } from '@/services/api'
+import { useCart } from '@/contexts/CartContext'
 import './style.css'
 
 //função pra formatar o cpf em xxx.xxx.xxx-xx
-const formatCpf = (value) => {
+const formatCpf = (value: string) => {
   //remove tudo que não for dígito
   const digits = value.replace(/\D/g, '');
   //aplicando máscara do CPF
@@ -23,7 +25,7 @@ const formatCpf = (value) => {
 };
 
 // função pra formatar telefone em (DDD)9XXXX-XXXX
-const formatTelefone = (value) => {
+const formatTelefone = (value: string) => {
   //remove tudo que não for dígito
   const digits = value.replace(/\D/g, '');
   // pega DDD (3 dígitos se vier com 0? assumindo 2 dígitos de DDD e dígito 9 fixo)
@@ -41,41 +43,98 @@ const formatTelefone = (value) => {
 
 export default function TelaInfo() {
     const router = useRouter();
+    const { clearCart } = useCart();
     const [nome, setNome] = useState('')
     const [cpf, setCpf] = useState('')
     const [telefone, setTelefone] = useState('')
     const [endereco, setEndereco] = useState('')
     const [complemento, setComplemento] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [orderData, setOrderData] = useState<any>(null)
     
+    useEffect(() => {
+        // Recuperar dados do pedido do sessionStorage
+        const storedOrderData = sessionStorage.getItem('orderData')
+        if (storedOrderData) {
+            const data = JSON.parse(storedOrderData)
+            setOrderData(data)
+            setCpf(formatCpf(data.cpf))
+        } else {
+            // Se não tiver dados do pedido, voltar para o carrinho
+            router.push('/TelaCarrinho')
+        }
+    }, [router])
+
     //handler cpf personalizado
-    const handleCpfChange = (e) => {
+    const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const rawValue = e.target.value;
       const formatted = formatCpf(rawValue);
       setCpf(formatted);
     };
 
     // Handler personalizado para o Telefone
-    const handleTelefoneChange = (e) => {
+    const handleTelefoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const formatted = formatTelefone(e.target.value);
       setTelefone(formatted);
     };
 
     // Verifica se todos os campos obrigatórios estão preenchidos corretamente
-  const isFormValid = 
-    nome.trim() !== '' &&
-    cpf.replace(/\D/g, '').length === 11 &&
-    telefone.replace(/\D/g, '').length === 11 &&
-    endereco.trim() !== '';
+    const isFormValid = 
+        nome.trim() !== '' &&
+        cpf.replace(/\D/g, '').length === 11 &&
+        telefone.replace(/\D/g, '').length === 11 &&
+        endereco.trim() !== '';
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!isFormValid) {
-      // n vai deixar avançar e pode exibir mensagem de erro aqui
-      return;
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!isFormValid || !orderData) {
+            return;
+        }
+
+        setLoading(true);
+        try {
+            // Criar o pedido na API
+            const result = await ApiService.placeOrder({
+                cpf: cpf.replace(/\D/g, ''), // Remove formatação do CPF
+                items: orderData.items
+            });
+
+            // Armazenar informações do pedido e cliente
+            const orderInfo = {
+                orderId: result.order_id,
+                customerInfo: {
+                    nome,
+                    cpf,
+                    telefone,
+                    endereco,
+                    complemento
+                },
+                status: result.status,
+                total: result.total
+            };
+
+            sessionStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+            
+            // Limpar carrinho
+            clearCart();
+            
+            // Redirecionar para confirmação de pagamento
+            router.push('/ConfirmarPagamento');
+        } catch (error) {
+            console.error('Erro ao criar pedido:', error);
+            alert('Erro ao criar pedido. Tente novamente.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleVoltar = () => {
+        router.push('/TelaCarrinho');
+    };
+
+    if (!orderData) {
+        return <div>Carregando...</div>;
     }
-    // redireciona apenas quando válido
-    router.push('/ConfirmarPagamento');
-  };
 
     return(
         <>
@@ -105,8 +164,18 @@ export default function TelaInfo() {
             </div>
             </div>
             <div className='buttons'>
-                <Button text='Confirmar' type='submit' tipo='btn-confirmarInfo' pagina='/ConfirmarPagamento' disabled={!isFormValid}/>
-                <Button text='Voltar' type='reset' tipo='btn-voltarInfo' pagina='/TelaCarrinho'></Button>
+                <Button 
+                    text={loading ? 'Criando Pedido...' : 'Confirmar'} 
+                    type='submit' 
+                    tipo='btn-confirmarInfo' 
+                    disabled={!isFormValid || loading}
+                />
+                <Button 
+                    text='Voltar' 
+                    type='button' 
+                    tipo='btn-voltarInfo' 
+                    onClick={handleVoltar}
+                />
             </div>
         </form>
         </>

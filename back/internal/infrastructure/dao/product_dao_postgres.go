@@ -13,11 +13,11 @@ func NewProductPostgres(db *gorm.DB) *ProductPostgres {
 	return &ProductPostgres{db: db}
 } 
 
-func (p *ProductPostgres ) Save(name string,price float64, ptype string) error {
+func (p *ProductPostgres ) Save(name string,price float64, category string) error {
 	return p.db.Create(&model.ProductModel{
 		Name: name,
 		Price: price,
-		Type: ptype,
+		Category: category,
 	}).Error
 }
 

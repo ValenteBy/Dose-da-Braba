@@ -97,3 +97,34 @@ func (r *OrderPostgres) FindByCPF(cpf string) ([]*domain.Order, error) {
     return orders, nil
 }
 
+func (r *OrderPostgres) FindAll() ([]*domain.Order, error) {
+    var models []model.OrderModel
+    if err := r.db.Find(&models).Error; err != nil {
+        return nil, err
+    }
+    var orders []*domain.Order
+    for _, m := range models {
+        var itemsFromDB []model.ItemPersist
+        json.Unmarshal([]byte(m.Items), &itemsFromDB)
+
+        var bebidas []domain.Beverage
+        for _, item := range itemsFromDB {
+            b := domain.NewBeverage(item.Base)
+            b = domain.ApplyAddons(b, item.Addons)
+            bebidas = append(bebidas, b)
+        }
+
+        order := &domain.Order{
+            ID:         m.ID,
+            CPF:        m.CPF,
+            Items:      bebidas,
+            Status:     m.Status,
+            TotalPrice: m.Total,
+        }
+        order.SetState(domain.StateFromStatus(m.Status))
+        order.Attach(domain.ClienteObserver{CPF: order.CPF})
+        orders = append(orders, order)
+    }
+    return orders, nil
+}
+

@@ -18,12 +18,33 @@ import (
 func main() {
     // Conectar ao PostgreSQL
     dsn := os.Getenv("DATABASE_URL")
+    if dsn == "" {
+        dsn = "host=localhost user=postgres password=123 dbname=dose_da_braba port=5432 sslmode=disable"
+    }
     db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
     if err != nil {
         log.Fatal("Erro ao conectar com o banco:", err)
     }
 
     db.AutoMigrate(&model.ClienteModel{}, &model.OrderModel{}, &model.ProductModel{})
+
+    // Seed produtos padrão se não existirem
+    var count int64
+    db.Model(&model.ProductModel{}).Count(&count)
+    if count == 0 {
+        defaultProducts := []model.ProductModel{
+            {Name: "Café Expresso", Price: 15.99, Category: "Cafe"},
+            {Name: "Cappuccino", Price: 19.99, Category: "Cafe"},
+            {Name: "Latte", Price: 19.99, Category: "Cafe"},
+            {Name: "Americano", Price: 12.99, Category: "Cafe"},
+            {Name: "Chá Verde", Price: 10.99, Category: "Cha"},
+            {Name: "Chá Preto", Price: 10.99, Category: "Cha"},
+            {Name: "Chá de Camomila", Price: 12.99, Category: "Cha"},
+        }
+        for _, product := range defaultProducts {
+            db.Create(&product)
+        }
+    }
 
     orderRepo := dao.NewOrderPostgres(db)
     productRepo := dao.NewProductPostgres(db)
@@ -32,7 +53,14 @@ func main() {
     pagamentoBO := application.PagamentoBO{OrderRepo: orderRepo}
     clienteBO := application.ClienteBO{ClienteRepo: clienteRepo}
     app := fiber.New()
-    app.Use(cors.New())
+    
+    // CORS configuration
+    app.Use(cors.New(cors.Config{
+        AllowOrigins: "http://localhost:3000,http://localhost:3001,http://localhost:3002",
+        AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+        AllowMethods: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        AllowCredentials: true,
+    }))
 
     // Criar pedido
     app.Post("/api/orders", func(c *fiber.Ctx) error {
@@ -93,13 +121,47 @@ func main() {
         return c.JSON(resp)
     })
 
+    // Listar todos os pedidos (para cozinha)
+    app.Get("/api/orders", func(c *fiber.Ctx) error {
+        orders, err := orderRepo.FindAll()
+        if err != nil {
+            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "erro ao buscar pedidos"})
+        }
+
+        var resp []application.OrderResponse
+        for _, o := range orders {
+            var items []application.OrderItemResponse
+            for _, b := range o.Items {
+                items = append(items, application.OrderItemResponse{
+                    Base:   b.Base(),
+                    Addons: b.Addons(),
+                })
+            }
+            resp = append(resp, application.OrderResponse{
+                ID:         o.ID,
+                CPF:        o.CPF,
+                Items:      items,
+                Status:     o.Status,
+                TotalPrice: o.TotalPrice,
+            })
+        }
+        return c.JSON(resp)
+    })
+
     // Listar menu
     app.Get("/api/menu", func(c *fiber.Ctx) error {
         products, err := productRepo.FindAll()
         if err != nil {
             return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "erro ao buscar menu"})
         }
-        return c.JSON(products)
+        
+        // Converter para o formato esperado pelo frontend
+        var menuItems []map[string]interface{}
+        for _, product := range products {
+            menuItems = append(menuItems, product.ToMenuItem())
+        }
+        
+        return c.JSON(menuItems)
     })
 
     // Cancelar pedido
@@ -179,5 +241,5 @@ func main() {
         return c.JSON(result)
     })
 
-    log.Fatal(app.Listen(":3000"))
+    log.Fatal(app.Listen(":8080"))
 }

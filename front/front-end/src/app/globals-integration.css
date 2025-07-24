@@ -1,0 +1,120 @@
+/* Estilos para integração frontend-backend */
+
+.cpf-container {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.cpf-container label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.cpf-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.carrinho-vazio {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.total-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 2px solid #333;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.quantidade-container {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantidade-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantidade-controls button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #333;
+  background: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantidade-controls button:hover {
+  background: #f0f0f0;
+}
+
+.quantidade-controls span {
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+}
+
+.preco-total {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.payment-info {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.payment-info p {
+  margin: 0.25rem 0;
+}
+
+.error-message {
+  color: #ff0000;
+  background-color: #ffe6e6;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .quantidade-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .total-container {
+    font-size: 1rem;
+  }
+  
+  .cpf-container {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+  }
+}

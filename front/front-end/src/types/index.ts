@@ -18,6 +18,7 @@ export interface ButtonProps {
     pagina?: string;
     type?: "button" | "submit" | "reset"
     onClick?: (e : React.MouseEvent<HTMLButtonElement>) => void
+    disabled?: boolean;
 }
 
 export interface Produto{
@@ -44,4 +45,56 @@ export interface ItemProps{
 
 export interface CounterProps{
     quant: number;
+}
+
+// API Types - Baseado no backend real
+export interface MenuItem {
+    id: string;
+    name: string;
+    base_price: number;
+    category: string;
+}
+
+export interface OrderItem {
+    base: string;
+    addons: string[];
+}
+
+export interface PlaceOrderDTO {
+    cpf: string;
+    items: OrderItem[];
+}
+
+export interface OrderResponse {
+    id: string;
+    cpf: string;
+    items: OrderItem[];
+    status: string;
+    total_price: number;
+}
+
+export interface PaymentDTO {
+    cpf: string;
+    payment_method: string;
+}
+
+// Estados válidos do pedido (baseado no State Pattern do backend)
+export type OrderStatus = 'RECEBIDO' | 'EM PREPARO' | 'PRONTO' | 'ENTREGUE' | 'CANCELADO';
+
+// Response do pagamento
+export interface PaymentResponse {
+    order_id: string;
+    status: string;
+    total: number;
+    original_price: number;
+    discount_applied: number;
+    final_price: number;
+}
+
+export interface CartItem {
+    base: string;
+    addons: string[];
+    quantity: number;
+    price: number;
+    name: string;
 }

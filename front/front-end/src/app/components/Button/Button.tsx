@@ -2,10 +2,12 @@ import "./Button.css"
 import { ButtonProps } from "@/types"
 import { useRouter } from "next/navigation"
 
-const Button = ({text, tipo ,type , pagina, onClick} : ButtonProps) => {
+const Button = ({text, tipo, type, pagina, onClick, disabled} : ButtonProps) => {
     const router = useRouter();
 
     const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) =>{
+        if (disabled) return;
+        
         if (onClick){
             onClick(e);
         }
@@ -16,7 +18,12 @@ const Button = ({text, tipo ,type , pagina, onClick} : ButtonProps) => {
 
     return(
         <div className="buttonbox">
-            <button className={tipo} type={type} onClick={handleButtonClick}>
+            <button 
+                className={tipo} 
+                type={type} 
+                onClick={handleButtonClick}
+                disabled={disabled}
+            >
                 {text}
             </button>
         </div>
