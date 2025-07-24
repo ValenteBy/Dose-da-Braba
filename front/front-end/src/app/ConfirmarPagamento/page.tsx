@@ -26,9 +26,9 @@ export default function ConfirmarPagamento() {
 
     const getPaymentMethodKey = (method: string) => {
         switch (method) {
-            case 'Pix': return 'PIX'
+            case 'Pix': return 'pix'
             case 'Credito': return 'cartao'
-            case 'Dinheiro': return 'FIDELIDADE' // Para desconto de fidelidade
+            case 'Dinheiro': return 'cartao' // Dinheiro também usa cartão fidelidade
             default: return 'cartao'
         }
     }
@@ -96,7 +96,7 @@ export default function ConfirmarPagamento() {
         <>
         <Header isClient/>
         <form className='main-content' onSubmit={handleSubmit}>
-            <div className='info-cliente'>
+            <div className='info-do-cliente'>
                 <div className='nome-endereco-complemento'>
                     <div>
                         <p id='bold'>Nome:</p>

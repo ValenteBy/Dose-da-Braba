@@ -37,13 +37,7 @@ const Header = ({isAdmin, isClient} : HeaderProps) => {
                     <p className="cabecalho-title" onClick={handleTelaInicial}>Cafortimais</p>
                 </div>
                 <div className="nav-bar">
-                    <div className="dropdown">
-                        <button className="dropbtn">Menu</button>
-                        <div className="dropdown-content">
-                            <a href="/Menu">Café</a>
-                            <a href="/Menu">Chá</a>
-                        </div>
-                    </div>
+                    <a className="nav-item" href="/Menu">Menu</a>
                     <a className="nav-item">Sobre Nós</a>
                     <a className="nav-item">Descontos</a>
                 </div>

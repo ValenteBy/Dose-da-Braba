@@ -8,6 +8,19 @@
     margin-bottom: 40px;
 }
 
+.status-header button.btn-voltar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    font-size: 30px;
+    font-family: var(--fonte-padrao);
+    text-align: center;
+    cursor: pointer;
+    margin-right: 200px;
+    box-shadow: 0px 3px 4px rgba(0,0,0,0.25);
+}
+
 /* Notificações */
 .notification-overlay {
     position: fixed;
@@ -142,18 +155,6 @@
     }
 }
 
-button.btn-voltar{
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: none;
-    font-size: 30px;
-    font-family: var(--fonte-padrao);
-    text-align: center;
-    cursor: pointer;
-    margin-right: 200px;
-    box-shadow: 0px 3px 4px rgba(0,0,0,0.25);
-}
 
 button .mg-auto{
     margin-top: 2px;
