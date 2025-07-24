@@ -221,6 +221,20 @@ func main() {
         notifs := domain.GetClienteNotifications(cpf)
         return c.JSON(fiber.Map{"notifications": notifs})
     })
+    
+    // Verificar elegibilidade para desconto de fidelidade
+    app.Get("/api/customers/:cpf/fidelity", func(c *fiber.Ctx) error {
+        cpf := c.Params("cpf")
+        eligible, err := pagamentoBO.IsEligibleForFidelity(cpf)
+        if err != nil {
+            return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "erro ao verificar fidelidade"})
+        }
+        return c.JSON(fiber.Map{
+            "cpf": cpf,
+            "eligible": eligible,
+            "required_orders": 10,
+        })
+    })
 
     // Pagamento do pedido com desconto
     app.Post("/api/orders/:id/pay", func(c *fiber.Ctx) error {

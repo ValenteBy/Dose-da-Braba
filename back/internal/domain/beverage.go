@@ -7,18 +7,18 @@ type Beverage interface {
 	Addons() []string
 }
 
-// Para coffe
+// Para coffee - preço base do café
 type coffe struct{}
 
-func (coffe) Price() float64   { return 5.00 }
+func (coffe) Price() float64   { return 15.99 } // Preço base do café (média dos cafés)
 func (coffe) Name() string     { return "Cafe" }
 func (coffe) Base() string     { return "Cafe" }
 func (coffe) Addons() []string { return []string{} }
 
-// Para tea
+// Para tea - preço base do chá  
 type tea struct{}
 
-func (tea) Price() float64   { return 4.00 }
+func (tea) Price() float64   { return 11.99 } // Preço base do chá (média dos chás)
 func (tea) Name() string     { return "Cha" }
 func (tea) Base() string     { return "Cha" }
 func (tea) Addons() []string { return []string{} }

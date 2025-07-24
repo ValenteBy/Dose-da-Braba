@@ -51,6 +51,19 @@ export class ApiService {
     }
   }
 
+  static async checkFidelityEligibility(cpf: string): Promise<{ eligible: boolean; required_orders: number }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/customers/${cpf}/fidelity`);
+      if (!response.ok) {
+        throw new Error('Erro ao verificar elegibilidade');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Erro ao verificar fidelidade:', error);
+      throw error;
+    }
+  }
+
   static async payOrder(orderId: string, paymentData: PaymentDTO): Promise<PaymentResponse> {
     try {
       const response = await fetch(`${API_BASE_URL}/orders/${orderId}/pay`, {

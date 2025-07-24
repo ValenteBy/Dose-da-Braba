@@ -25,14 +25,15 @@ export default function Card()  {
         } catch (err) {
             console.error('Erro ao carregar menu:', err)
             setError('Erro ao carregar menu')
-            // Fallback para produtos estáticos em caso de erro
+            // Fallback para produtos estáticos em caso de erro - preços atualizados
             setProdutos([
                 { id: '1', name: "Café Expresso", base_price: 15.99, category: "Cafe" },
-                { id: '2', name: "Capuccino", base_price: 19.99, category: "Cafe" },
+                { id: '2', name: "Cappuccino", base_price: 19.99, category: "Cafe" },
                 { id: '3', name: "Latte", base_price: 19.99, category: "Cafe" },
-                { id: '4', name: "Cha", base_price: 10.99, category: "Cha" },
-                { id: '5', name: "Hot Chocolate", base_price: 17.99, category: "Cafe" },
-                { id: '6', name: "Suco", base_price: 12.99, category: "Bebida" },
+                { id: '4', name: "Americano", base_price: 12.99, category: "Cafe" },
+                { id: '5', name: "Chá Verde", base_price: 10.99, category: "Cha" },
+                { id: '6', name: "Chá Preto", base_price: 10.99, category: "Cha" },
+                { id: '7', name: "Chá de Camomila", base_price: 12.99, category: "Cha" },
             ])
         } finally {
             setLoading(false)

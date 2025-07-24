@@ -26,9 +26,9 @@ export default function ConfirmarPagamento() {
 
     const getPaymentMethodKey = (method: string) => {
         switch (method) {
-            case 'Pix': return 'pix'
+            case 'Pix': return 'PIX'
             case 'Credito': return 'cartao'
-            case 'Dinheiro': return 'cartao' // Dinheiro também usa cartão fidelidade
+            case 'Dinheiro': return 'FIDELIDADE' // Para desconto de fidelidade
             default: return 'cartao'
         }
     }

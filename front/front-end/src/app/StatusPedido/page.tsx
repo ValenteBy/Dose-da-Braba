@@ -158,22 +158,7 @@ export default function StatusPedido() {
         }
     }
 
-    const calculateItemPrice = (item: any) => {
-        // Preço base da bebida + addons
-        let price = 5.0 // preço base do café
-        if (item.base === 'Cha') price = 4.0
-        
-        // Adicionar preço dos addons
-        item.addons.forEach((addon: string) => {
-            switch (addon) {
-                case 'LeiteDeAveia': price += 2.0; break
-                case 'Canela': price += 1.0; break
-                case 'SemAcucar': break // sem custo adicional
-            }
-        })
-        
-        return price
-    }
+    // Removido calculateItemPrice - usando dados diretos do backend
 
     if (loading) {
         return <div>Carregando...</div>
@@ -257,7 +242,7 @@ export default function StatusPedido() {
                 
                 <div className='itens-lista'>
                     {order.items.map((item, index) => (
-                        <div key={index} className='item-pedido'>
+                        <div key={`item-${index}-${item.base}-${Date.now()}`} className='item-pedido'>
                             <div className='item-info'>
                                 <h3 className='item-nome'>{item.base}</h3>
                                 <div className='item-personalizacoes'>
@@ -276,7 +261,7 @@ export default function StatusPedido() {
                                 </div>
                             </div>
                             <div className='item-preco'>
-                                R$ {calculateItemPrice(item).toFixed(2)}
+                                R$ {(order.total_price / order.items.length).toFixed(2)}
                             </div>
                         </div>
                     ))}
