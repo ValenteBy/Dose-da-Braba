@@ -1,0 +1,194 @@
+.pedidos-container{
+    max-width: 1470px;
+    margin: auto;
+}
+
+.pedidos-content{
+    width: fit-content;
+    margin: auto;
+}
+
+.pedidos-content h1{
+    text-align: center;
+}
+
+.pedido-card{
+    width: 830px;
+    height: 195px;
+    background-color: var(--branco);
+    border: 3px solid var(--cinza-bordas);
+    border-radius: 10px;
+}
+
+.pedido-card-container{
+    width: 85%;
+    margin: auto;
+}
+
+.pedido-card-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-detalhesPedido{
+    width: 140px;
+    height: 50px;
+    border: 3px solid var(--preto);
+    border-radius: 10px;
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-avancarStatus{
+    width: 140px;
+    height: 50px;
+    border: 3px solid var(--preto);
+    border-radius: 10px;
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.status-container{
+    padding-left: 15px;
+}
+
+.status-showcase{
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+}
+
+.status-cell{
+    margin-right: 5px;
+}
+
+.status-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.status-ball{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 42px;
+}
+
+.status-path{
+    background-color: var(--preto);
+    width: 160px;
+    height: 8px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+/* Popup */
+
+.popup-pedido{
+    width: 950px;
+    height: 850px;
+    background-color: var(--cor-fundo);
+    border-radius: 15px;
+    box-shadow: 0px 0px 0px 1000px rgba(0, 0, 0, 0.4);
+}
+
+.popup-container{
+    max-width: 690px;
+    margin: auto;
+}
+
+.popup-container h1{
+    font-weight: 400;
+    margin: auto;
+    width: fit-content;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.info-cliente{
+    display: flex;
+    width: 850px;
+    justify-content: space-between;
+}
+
+.popup-pedido p {
+    font-family: var(--fonte-padrao);
+    font-size: 35px;
+    font-weight: bold;
+    margin: 0 0;
+}
+
+.nome-endereco-complemento div{
+    margin-top: 5px;
+}
+
+.cpf-telefone div{
+    margin-top: 5px;
+    margin-right: 180px;
+}
+
+.info-cliente p{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.info-cliente p#bold{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.resumo-pedido{
+    max-height: 280px;
+    margin-top: 25px;
+    overflow: auto;
+}
+
+.resumo-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    width: 90%;
+    margin-bottom: 15px;
+}
+
+.mgy-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.resumo-item span, .resumo-item p{
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.popup-container .total-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.button-popup{
+    margin: auto;
+    width: fit-content;
+    margin-top: 40px;
+}
+
+.button-popup .button-fechar{
+    width: 185px;
+    height: 60px;
+    font-size: 25px;
+    font-family: var(--fonte-padrao);
+    border: 3px solid var(--preto);
+    border-radius: 35px;
+    cursor: pointer;
+}

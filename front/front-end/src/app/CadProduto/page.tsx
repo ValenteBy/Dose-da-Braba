@@ -30,7 +30,6 @@ export default function CadProduto(){
             <form className='linha'>
                 <div className='coluna'>
                     <Input id='input' text='Nome do Produto:' placeholder='' value={nomeProduto} onChange={(e) => {setNomeProduto(e.target.value)}}/>
-                    <Select></Select>
                     <Input id='preco' text='Preço:' placeholder='0,01' value={precoProduto} onChange={(e) => {setPrecoProduto(e.target.value)}}/>
                     <label>Disponível para compra: 
                         <input type='checkbox' id='check-disponivel'></input>

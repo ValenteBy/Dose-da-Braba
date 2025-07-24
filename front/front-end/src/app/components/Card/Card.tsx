@@ -50,7 +50,7 @@ export default function Card()  {
                 <Image className='image-border' src={item.imagem} alt='product-photo' width={170} height={170}></Image>
                 <span className='nome-container text-style'>{item.nome}</span>
                 <span className='preco-container text-style'>R$ {item.preco}</span>
-                <Button text='Adicionar ao carrinho' tipo='btn-adicionarProduto' type='button' onClick={handleTelaProduto}/>
+                <Button text='Personalizar Bebida' tipo='btn-adicionarProduto -preto' type='button' onClick={handleTelaProduto}/>
             </div>)
             })}
         </div>
