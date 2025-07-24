@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 
 	"github.com/ValenteBy/Dose-da-Braba/internal/domain"
-	"gorm.io/gorm"
-
 	"github.com/ValenteBy/Dose-da-Braba/internal/infrastructure/model"
+	"gorm.io/gorm"
 )
 
 type OrderPostgres struct {
@@ -18,42 +17,51 @@ func NewOrderPostgres(db *gorm.DB) *OrderPostgres {
 }
 
 func (r *OrderPostgres) Save(order *domain.Order) error {
-    var itemNames []string
+    var itemsToPersist []model.ItemPersist
     for _, b := range order.Items {
-        itemNames = append(itemNames, b.Name())
+        itemsToPersist = append(itemsToPersist, model.ItemPersist{
+            Base:   b.Base(),
+            Addons: b.Addons(),
+        })
     }
-    itemsStr, _ := json.Marshal(itemNames)
-    model := model.OrderModel{
+    itemsStr, _ := json.Marshal(itemsToPersist)
+    modelOrder := model.OrderModel{
         ID:     order.ID,
         CPF:    order.CPF,
         Items:  string(itemsStr),
         Total:  order.TotalPrice,
         Status: order.Status,
     }
-    return r.db.Save(&model).Error
+    return r.db.Save(&modelOrder).Error
 }
 
 func (r *OrderPostgres) FindByID(id string) (*domain.Order, error) {
-    var model model.OrderModel
-    if err := r.db.First(&model, "id = ?", id).Error; err != nil {
+    // Adicione este log para depuração
+    println("DEBUG: Procurando pedido com ID:", id)
+    var modelOrder model.OrderModel
+    if err := r.db.First(&modelOrder, "id = ?", id).Error; err != nil {
+        println("DEBUG: Erro ao buscar pedido:", err.Error())
         return nil, err
     }
 
-    var itemNames []string
-    json.Unmarshal([]byte(model.Items), &itemNames)
+    var itemsFromDB []model.ItemPersist
+    json.Unmarshal([]byte(modelOrder.Items), &itemsFromDB)
 
     var bebidas []domain.Beverage
-    for _, Name := range itemNames {
-        b := domain.NewBeverage(Name)
+    for _, item := range itemsFromDB {
+        b := domain.NewBeverage(item.Base)
+        b = domain.ApplyAddons(b, item.Addons)
         bebidas = append(bebidas, b)
     }
 
-    order := domain.NewOrder(bebidas)
-    order.ID = model.ID
-    order.CPF = model.CPF
-    order.TotalPrice = model.Total
-    order.Status = model.Status
-    order.SetState(domain.StateFromStatus(model.Status))
+    order := &domain.Order{
+        ID:         modelOrder.ID,
+        CPF:        modelOrder.CPF,
+        Items:      bebidas,
+        Status:     modelOrder.Status,
+        TotalPrice: modelOrder.Total,
+    }
+    order.SetState(domain.StateFromStatus(modelOrder.Status))
     order.Attach(domain.ClienteObserver{CPF: order.CPF})
     return order, nil
 }
@@ -65,12 +73,13 @@ func (r *OrderPostgres) FindByCPF(cpf string) ([]*domain.Order, error) {
     }
     var orders []*domain.Order
     for _, m := range models {
-        var itemNames []string
-        json.Unmarshal([]byte(m.Items), &itemNames)
+        var itemsFromDB []model.ItemPersist
+        json.Unmarshal([]byte(m.Items), &itemsFromDB)
 
         var bebidas []domain.Beverage
-        for _, Name := range itemNames {
-            b := domain.NewBeverage(Name)
+        for _, item := range itemsFromDB {
+            b := domain.NewBeverage(item.Base)
+            b = domain.ApplyAddons(b, item.Addons)
             bebidas = append(bebidas, b)
         }
 

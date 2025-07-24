@@ -20,6 +20,7 @@ func (bo *PedidoBO) CriarPedido(dto PlaceOrderDTO) (*domain.Order, error) {
     order.CPF = dto.CPF
     order.Attach(domain.ConsoleObserver{Name: "Cozinha"})
     order.Attach(domain.ClienteObserver{CPF: dto.CPF})
+    order.Notify()
     if err := bo.OrderRepo.Save(order); err != nil {
         return nil, err
     }
@@ -34,6 +35,7 @@ func (bo *PedidoBO) CancelarPedido(id string) (*domain.Order, error) {
     if err := order.Cancel(); err != nil {
         return nil, err
     }
+    order.Notify() // <-- Notifica sobre o cancelamento
     if err := bo.OrderRepo.Save(order); err != nil {
         return nil, err
     }

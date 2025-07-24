@@ -15,4 +15,4 @@ func IsValidAddon(addon string) bool {
 
 func IsValidPaymentMethod(method string) bool {
 	return method == "cartao" || method == "pix"
-} 
+}

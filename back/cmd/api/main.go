@@ -69,17 +69,28 @@ func main() {
     })
 
     // Buscar pedido por ID
+    // No main.go, substitua o handler de GET /api/orders/:id por:
     app.Get("/api/orders/:id", func(c *fiber.Ctx) error {
         id := c.Params("id")
         order, err := orderRepo.FindByID(id)
         if err != nil {
             return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "pedido não encontrado"})
         }
-        return c.JSON(fiber.Map{
-            "order_id": order.ID,
-            "status":   order.Status,
-            "total":    order.TotalPrice,
-        })
+        var items []application.OrderItemResponse
+        for _, b := range order.Items {
+            items = append(items, application.OrderItemResponse{
+                Base:   b.Base(),
+                Addons: b.Addons(),
+            })
+        }
+        resp := application.OrderResponse{
+            ID:         order.ID,
+            CPF:        order.CPF,
+            Items:      items,
+            Status:     order.Status,
+            TotalPrice: order.TotalPrice,
+        }
+        return c.JSON(resp)
     })
 
     // Listar menu
@@ -122,9 +133,26 @@ func main() {
         if err != nil {
             return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "erro ao buscar pedidos"})
         }
-        return c.JSON(orders)
-    })
 
+        var resp []application.OrderResponse
+        for _, o := range orders {
+            var items []application.OrderItemResponse
+            for _, b := range o.Items {
+                items = append(items, application.OrderItemResponse{
+                    Base:   b.Base(),
+                    Addons: b.Addons(),
+                })
+            }
+            resp = append(resp, application.OrderResponse{
+                ID:         o.ID,
+                CPF:        o.CPF,
+                Items:      items,
+                Status:     o.Status,
+                TotalPrice: o.TotalPrice,
+            })
+        }
+        return c.JSON(resp)
+    })
     // Notificações do cliente
     app.Get("/api/customers/:cpf/notifications", func(c *fiber.Ctx) error {
         cpf := c.Params("cpf")
@@ -134,6 +162,7 @@ func main() {
 
     // Pagamento do pedido com desconto
     app.Post("/api/orders/:id/pay", func(c *fiber.Ctx) error {
+        log.Println("Recebendo pagamento para ID:", c.Params("id"))
         var dto application.PayDTO
         if err := c.BodyParser(&dto); err != nil {
             return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "payload inválido"})

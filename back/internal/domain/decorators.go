@@ -8,33 +8,33 @@ type OatMilk struct {
 	beverageDecorator
 }
 
-func (d OatMilk) Name() string {
-	return d.beverage.Name() + " com leite de aveia"
-}
-func (d OatMilk) Price() float64 {
-	return d.beverage.Price() + 2.0
+func (o OatMilk) Name() string   { return o.beverage.Name() + " com leite de aveia" }
+func (o OatMilk) Price() float64 { return o.beverage.Price() + 2.0 }
+func (o OatMilk) Base() string   { return o.beverage.Base() }
+func (o OatMilk) Addons() []string {
+	return append(o.beverage.Addons(), "LeiteDeAveia")
 }
 
 type Cinnamon struct {
 	beverageDecorator
 }
 
-func (d Cinnamon) Name() string {
-	return d.beverage.Name() + " com canela"
-}
-func (d Cinnamon) Price() float64 {
-	return d.beverage.Price() + 1.0
+func (c Cinnamon) Name() string   { return c.beverage.Name() + " com canela" }
+func (c Cinnamon) Price() float64 { return c.beverage.Price() + 1.0 }
+func (c Cinnamon) Base() string   { return c.beverage.Base() }
+func (c Cinnamon) Addons() []string {
+	return append(c.beverage.Addons(), "Canela")
 }
 
 type NoSugar struct {
 	beverageDecorator
 }
 
-func (d NoSugar) Name() string {
-	return d.beverage.Name() + " sem açúcar"
-}
-func (d NoSugar) Price() float64 {
-	return d.beverage.Price() + 0.0
+func (n NoSugar) Name() string   { return n.beverage.Name() + " sem açúcar" }
+func (n NoSugar) Price() float64 { return n.beverage.Price() }
+func (n NoSugar) Base() string   { return n.beverage.Base() }
+func (n NoSugar) Addons() []string {
+	return append(n.beverage.Addons(), "SemAcucar")
 }
 
 func ApplyAddons(base Beverage, addons []string) Beverage {
